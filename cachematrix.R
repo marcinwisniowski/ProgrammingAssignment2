@@ -38,10 +38,11 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
     inverted <- x$getInverted()
 
+    # Check if inverse matrix was cached otherwise calculate one.
     if ( is.null(inverted) ) {
         data <- x$getMatrix()
         if ( nrow(data) != ncol(data) ) {
-            stop("Can not calculate inversion of a not square Matrix")
+            stop("Can not calculate inversion for a not square Matrix")
         }
         inverted <- solve(data, ...)
         x$setInverted(inverted)
